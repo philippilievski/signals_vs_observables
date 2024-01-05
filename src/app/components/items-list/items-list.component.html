@@ -1,19 +1,29 @@
-@for(item of items(); track item.name) {
-    <p>{{item.id}}</p>
-    <p>{{item.name}}</p>
-}
-
-<form [formGroup]="newItemFormGroup" (ngSubmit)="addNewItem()">
-    <label for="id">Id</label>
-    <input id="id" type="number" formControlName="id" />
+<div class="p-10">
+    @for(item of items(); track item.name) {
+        <div class="flex flex-col rounded-md bg-slate-500 w-full h-40 p-5 m-5">
+            <p>Id: {{item.id}}</p>
+            <p>Name: {{item.name}}</p>
+            <div>
+                <label for="isRound">is round? </label>
+                <input id="isRound" type="checkbox" [checked]="item.isRound" (click)="false"/>
+            </div>
+            <p>Price: {{item.price}}</p>
+            <button (click)="addToCart(item)" class="bg-blue-400 ml-auto">Add to cart</button>
+        </div>
+    }
     
-    <label for="name">Name</label>
-    <input id="name" type="text" formControlName="name" />
-
-    <label for="isRound">is round?</label>
-    <input id="isRound" type="checkbox" formControlName="isRound" />
+    <form [formGroup]="newItemFormGroup" (ngSubmit)="addNewItem()">
+        <label for="id">Id</label>
+        <input id="id" type="number" formControlName="id" />
+        
+        <label for="name">Name</label>
+        <input id="name" type="text" formControlName="name" />
     
-    <label for="price">price</label>
-    <input id="price" type="number" formControlName="price" />
-    <button type="submit">Submit</button>
-</form>
+        <label for="isRound">is round?</label>
+        <input id="isRound" type="checkbox" formControlName="isRound" />
+        
+        <label for="price">price</label>
+        <input id="price" type="number" formControlName="price" />
+        <button type="submit">Submit</button>
+    </form>
+</div>

@@ -3,6 +3,7 @@ import { Component, inject } from '@angular/core';
 import { ItemsService } from '../../services/items.service';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Item } from '../../entities/item';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-items-list',
@@ -13,6 +14,7 @@ import { Item } from '../../entities/item';
 })
 export class ItemsListComponent {
   itemsService = inject(ItemsService);
+  cartService = inject(CartService);
   items = this.itemsService.allItems;
 
   newItemFormGroup = new FormGroup( {
@@ -22,15 +24,15 @@ export class ItemsListComponent {
     price: new FormControl(),
   })
 
-  // addItemForm = new FormGroup()
-
   constructor() {
-  }
-
-  ngOnInit() {
   }
 
   addNewItem() {
     this.itemsService.addItem(this.newItemFormGroup.value as Item);
+  }
+
+  addToCart(item: Item) {
+    this.cartService.addItemToCart(item);
+    console.log(this.cartService.cart());
   }
 }
