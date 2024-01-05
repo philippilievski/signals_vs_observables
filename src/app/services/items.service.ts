@@ -1,15 +1,18 @@
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { Injectable, Signal, WritableSignal, inject, signal } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Injectable, computed, inject, signal } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Item } from '../entities/item';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { Item, items } from '../entities/item';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ItemsService {
-  private httpClient = inject(HttpClient);
-  items: Observable<Item[]> = this.httpClient.get<Item[]>('/assets/data/items.json');
+  allItems = signal<Item[]>(items);
+
   constructor() {
   }    
+
+  addItem(newItem: Item) {
+    this.allItems.update((items) => [...items, newItem])
+  }
 }

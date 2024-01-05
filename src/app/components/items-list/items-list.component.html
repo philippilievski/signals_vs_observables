@@ -1,4 +1,19 @@
-@for(item of items | async; track item.name) {
+@for(item of items(); track item.name) {
     <p>{{item.id}}</p>
     <p>{{item.name}}</p>
 }
+
+<form [formGroup]="newItemFormGroup" (ngSubmit)="addNewItem()">
+    <label for="id">Id</label>
+    <input id="id" type="number" formControlName="id" />
+    
+    <label for="name">Name</label>
+    <input id="name" type="text" formControlName="name" />
+
+    <label for="isRound">is round?</label>
+    <input id="isRound" type="checkbox" formControlName="isRound" />
+    
+    <label for="price">price</label>
+    <input id="price" type="number" formControlName="price" />
+    <button type="submit">Submit</button>
+</form>
