@@ -1,6 +1,6 @@
 <div class="p-10">
     @for(item of items(); track item.name) {
-        <div class="flex flex-col rounded-md bg-slate-500 w-full h-40 p-5 m-5">
+        <div class="flex flex-col rounded-md bg-slate-400 w-auto h-auto p-5 m-5">
             <p>Id: {{item.id}}</p>
             <p>Name: {{item.name}}</p>
             <div>
@@ -8,7 +8,7 @@
                 <input id="isRound" type="checkbox" [checked]="item.isRound" (click)="false"/>
             </div>
             <p>Price: {{item.price}}</p>
-            <button (click)="addToCart(item)" class="bg-blue-400 ml-auto">Add to cart</button>
+            <button (click)="addToCart(item)" class="p-1 rounded-md bg-slate-600 text-white ml-auto">Add to cart</button>
         </div>
     }
     
